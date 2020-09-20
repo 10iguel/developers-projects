@@ -45,10 +45,15 @@ exports.getBootcamps = asyncHandler(async (req,res,next)=>{
     }
     //Pagination
     const page = parseInt(req.query.page, 10) || 1
+    console.log(page);
     const limit = parseInt(req.query.limit, 10) || 25
+    console.log(limit);
     const startIndex = (page-1)*limit
+    console.log('startIndex',startIndex);
     const endIndex = page*limit
+    console.log('EndIndex',endIndex);
     const total = await Bootcamp.countDocuments()
+    console.log('total',total);
     query = query.skip(startIndex).limit(limit)
 
     //Execution query
