@@ -71,4 +71,24 @@ exports.addCourse = asyncHandler(async (req,res,next)=>{
     })
 })
 
+// @desc            Update Course
+// @route           PUT /api/v1/courses/:id
+// @access          Private
 
+exports.updateCourse = asyncHandler(async (req,res,next)=>{
+    let course = await Course.findById(req.params.id)
+
+    if (!course){
+        return next(new ErrorResponse(`No course with the id of ${req.params.id}`),404)
+    }
+
+    course = await Course.findByIdAndUpdate(req.params.id,req.body,{
+        new:true,
+        runValidators: true
+    })
+
+    res.status(200).json({
+        success : true,
+        data : course
+    })
+})
