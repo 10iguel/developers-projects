@@ -159,3 +159,31 @@ exports.getBootcampInRadius = asyncHandler(async (req,res,next)=>{
 
     })
 })
+
+// @desc            Upload photo for bootcamp
+// @route           PUT /api/v/bootcamps/:id/photo
+// @access          Pritave
+
+exports.bootcampPhotoUpload = asyncHandler(async (req,res,next)=>{
+    const bootcamp = await Bootcamp.findById(req.params.id)
+
+    if (!bootcamp){
+        return next(
+            new ErrorResponse (`Bootcamp not found with id of ${req.params.id}`,404))
+    }
+
+    if (!req.files){
+        return next(
+            new ErrorResponse (`Please upload a file`,400))
+    }
+    const file = req.files.file
+
+    //Make sure the image is a photo
+    if (!file.mimetype.startsWith('image')){
+        return next(
+            new ErrorResponse (`Please upload an image file`,400))
+    }
+
+
+
+})
