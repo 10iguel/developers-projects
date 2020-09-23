@@ -1,4 +1,5 @@
 //Controllers , exports
+const path = require('path')
 const ErrorResponse = require('../utils/errorResponse')
 const asyncHandler = require('../middleware/async')
 const geocoder = require('../utils/geocoder')
@@ -189,6 +190,10 @@ exports.bootcampPhotoUpload = asyncHandler(async (req,res,next)=>{
         return next(
             new ErrorResponse (`Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`,400))
     }
+
+    //Create custom filename
+    file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`
+
 
 
 })
