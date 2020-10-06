@@ -66,14 +66,14 @@ exports.addReview = asyncHandler(async (req,res,next)=>{
 })
 
 // @desc            Update review
-// @route           PUT /api/v1/bootcamps/:bootcampId/reviews
+// @route           PUT /api/v1/reviews/:id
 // @access          Private
 
 exports.updateReview = asyncHandler(async (req,res,next)=>{
-    let review = await Bootcamp.findById(req.params.id)
+    let review = await Review.findById(req.params.id)
 
     if (!review){
-        return next (new ErrorResponse(`No review with the id of ${req.params.id}`,404))
+        return next (new ErrorResponse(`No review with the id of ${req.params.id}`,401))
     }
 
     // TODO: Make sure review belongs to user or user is admin
@@ -89,6 +89,6 @@ exports.updateReview = asyncHandler(async (req,res,next)=>{
 
     res.status(200).json({
         success:true,
-        data:review
+        data: review
     })
 })
