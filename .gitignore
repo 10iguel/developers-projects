@@ -1,5 +1,12 @@
 node_modules/
 config/config.env/
 justNotes.ts/
-.idea
-
+.idea/
+/config/config.env
+/package-lock.json
+/public/uploads/photo_5d725a1b7b292f5f8ceff788.jpg
+/justNotes.ts
+/public/index.html
+/public/fonds/glyphicons-halflings-regular.woff2
+/public/fonds/glyphicons-halflings-regular.woff
+/public/fonds/glyphicons-halflings-regular.eot
