@@ -70,3 +70,4 @@ if (process.argv[2] === '-i'){
     deleteData()
 }
 
+console.log(process.argv[2])

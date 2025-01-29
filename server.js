@@ -16,7 +16,7 @@ const errorHandler = require('./middleware/error')
 
 
 //Load env vars
-dotenv.config({path:'./config/config.env'})
+dotenv.config({ path : './config/config.env' })
 
 //Connect to database
 connectDB()
@@ -32,7 +32,6 @@ const reviews = require('./routes/reviews')
 const app = express();
 
 //Body parser
-
 app.use(express.json())
 
 //Cookie parser
@@ -86,13 +85,22 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000;
 
+console.log(process.env.NODE_ENV)
 const server = app.listen(PORT,
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.red.bold))
 
+
+
 //Handle unhandled promise rejections
-process.on('unhandledRejection',(err,promise)=>{
-    console.log(`Error:${err.message}`.red)
-    //Close server & exit process
-    server.close(()=> process.exit(1))
-})
+// process.on('unhandledRejection',(err,promise)=>{
+//     console.log(`Error:${err.message} right here`.red)
+//     promise.then((data)=>{
+//         console.log(data)
+//     })
+//         .catch((reason)=>{
+//         console.log(reason)
+//     })
+//     //Close server & exit process
+//     server.close(()=> process.exit(1))
+// })
 
